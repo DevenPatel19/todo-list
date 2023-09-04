@@ -5,38 +5,39 @@ const TodoForm = (props) => {
 
     const [activity, setActivity] = useState("");
     
-    const [priority, setPriority] = useState(false);
+    const [completed, setCompleted] = useState(false);
 
     //? We need to be able to pass up (lift) the data from the form to update the state of the list in the parent!
     const handleSubmit = (e) => {
         e.preventDefault();
-        const newTodo = { activity, priority, completed: false };
+        const newTodo = { activity, completed };
         console.log(newTodo);
 
         props.addTodo(newTodo)
     }
 
     return (
-        <fieldset>
-            <legend>TodoForm.jsx</legend>
+     
 
-
+        < >
             <form onSubmit={handleSubmit}>
-                <div>
+                <div class="col-12">
                     <label>Activity : </label>
-                    <input name="activity" type="text" value={activity} onChange={(e) => setActivity(e.target.value)} />
+                    <input class="form-control" name="activity" type="text" value={activity} onChange={(e) => setActivity(e.target.value)} />
                 </div>
 
-                <div>
-                    <label>High Priority?</label>
+                <div class="col-12">
+                    <label>Completed?</label>
                     {/* Check boxes return true/false from the checked attribute */}
-                    <input name="priority" type="checkbox" onChange={(e) => setPriority(e.target.checked)} />
+                    <input class="form-control" name="completed" type="checkbox" onChange={(e) => setCompleted(e.target.checked)} />
                 </div>
-                <input type="submit" />
+                <br/>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
             </form>
+        </>
 
-        </fieldset>
-    )
-}
-
+          )
+    }
 export default TodoForm
